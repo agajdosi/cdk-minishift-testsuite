@@ -262,7 +262,7 @@ class minishiftSanity(Test):
         else:
             self.fail("Error while stopping the cluster.")
             
-    def test_repetetive_use(self):
+    def atest_repetetive_use(self):
         self.log.info("Testing repetetive use of minishifrt (start-stop-start...)")
         for x in range(3):
             self.test_ms_start()
