@@ -6,7 +6,7 @@ import time
 
 log = logging.getLogger("Openshift.Debug")
 
-def wait_for_output(cmd, timeout = 60):
+def wait_for_output(cmd, timeout = 180):
     output = "FAIL"
     for i in range(timeout):
         time.sleep(1)
@@ -17,7 +17,7 @@ def wait_for_output(cmd, timeout = 60):
             pass
     return output
 
-def wait_for_text_in_output(cmd, text = '', timeout = 60):
+def wait_for_text_in_output(cmd, text = '', timeout = 180):
     output = "FAIL"
     for i in range(timeout):
         time.sleep(1)
@@ -27,6 +27,12 @@ def wait_for_text_in_output(cmd, text = '', timeout = 60):
                 return output
         except:
             pass
+    return output
+
+def oc_login(self, uname, password):
+    strcmd = "oc login --username=" +uname +" --password=" +password +" --insecure-skip-tls-verify"
+    self.log.info ("Executing : " +strcmd)
+    output = wait_for_output(strcmd)
     return output
 
 def add_new_project(self, project_name):
